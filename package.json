@@ -4,6 +4,7 @@
   "dependencies": {
     "body-parser": "^1.9.2",
     "express": "~4.1.1",
-    "mongoose": "^3.8.18"
+    "mongoose": "^3.8.18",
+    "request": "^2.47.0"
   }
 }
