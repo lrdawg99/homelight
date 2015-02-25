@@ -1,6 +1,6 @@
 # homelight
 Homelight is a better interface for interior lighting. 
-* It has an dead simple interface that predicts what you want to use the lighting to do. 
+* It has an dead simple interface that predicts what you want the lighting to do. 
 * It adjusts the light color temperature based on the time of day and season to make you feel better. 
 * It protects your home when it notices you're away. 
 * It responds appropriately to sound and motion around the house. 
