@@ -1,0 +1,86 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'install', 'nodemo' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.35
+4 verbose node symlink /usr/bin/node
+5 warn package.json homelight@ No description
+6 warn package.json homelight@ No repository field.
+7 warn package.json homelight@ No README data
+8 verbose readDependencies using package.json deps
+9 verbose cache add [ 'nodemo', null ]
+10 verbose cache add name=undefined spec="nodemo" args=["nodemo",null]
+11 verbose parsed url { protocol: null,
+11 verbose parsed url   slashes: null,
+11 verbose parsed url   auth: null,
+11 verbose parsed url   host: null,
+11 verbose parsed url   port: null,
+11 verbose parsed url   hostname: null,
+11 verbose parsed url   hash: null,
+11 verbose parsed url   search: null,
+11 verbose parsed url   query: null,
+11 verbose parsed url   pathname: 'nodemo',
+11 verbose parsed url   path: 'nodemo',
+11 verbose parsed url   href: 'nodemo' }
+12 silly lockFile 3c5e9faf-nodemo nodemo
+13 verbose lock nodemo /home/logan/.npm/3c5e9faf-nodemo.lock
+14 silly lockFile 3c5e9faf-nodemo nodemo
+15 silly lockFile 3c5e9faf-nodemo nodemo
+16 verbose addNamed [ 'nodemo', '' ]
+17 verbose addNamed [ null, '*' ]
+18 silly lockFile 642e7609-nodemo nodemo@
+19 verbose lock nodemo@ /home/logan/.npm/642e7609-nodemo.lock
+20 silly addNameRange { name: 'nodemo', range: '*', hasData: false }
+21 verbose request where is /nodemo
+22 verbose request registry http://registry.npmjs.org/
+23 verbose request id 619f1e7324a1fa14
+24 verbose url raw /nodemo
+25 verbose url resolving [ 'http://registry.npmjs.org/', './nodemo' ]
+26 verbose url resolved http://registry.npmjs.org/nodemo
+27 verbose request where is http://registry.npmjs.org/nodemo
+28 info trying registry request attempt 1 at 20:49:02
+29 http GET http://registry.npmjs.org/nodemo
+30 http 404 http://registry.npmjs.org/nodemo
+31 verbose headers { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+31 verbose headers   'content-type': 'application/json',
+31 verbose headers   'cache-control': 'max-age=0',
+31 verbose headers   'content-length': '52',
+31 verbose headers   'accept-ranges': 'bytes',
+31 verbose headers   date: 'Thu, 22 Jan 2015 01:49:04 GMT',
+31 verbose headers   via: '1.1 varnish',
+31 verbose headers   age: '0',
+31 verbose headers   connection: 'keep-alive',
+31 verbose headers   'x-served-by': 'cache-iad2147-IAD',
+31 verbose headers   'x-cache': 'MISS',
+31 verbose headers   'x-cache-hits': '0',
+31 verbose headers   'x-timer': 'S1421891344.430735,VS0,VE158' }
+32 silly registry.get cb [ 404,
+32 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+32 silly registry.get     'content-type': 'application/json',
+32 silly registry.get     'cache-control': 'max-age=0',
+32 silly registry.get     'content-length': '52',
+32 silly registry.get     'accept-ranges': 'bytes',
+32 silly registry.get     date: 'Thu, 22 Jan 2015 01:49:04 GMT',
+32 silly registry.get     via: '1.1 varnish',
+32 silly registry.get     age: '0',
+32 silly registry.get     connection: 'keep-alive',
+32 silly registry.get     'x-served-by': 'cache-iad2147-IAD',
+32 silly registry.get     'x-cache': 'MISS',
+32 silly registry.get     'x-cache-hits': '0',
+32 silly registry.get     'x-timer': 'S1421891344.430735,VS0,VE158' } ]
+33 silly lockFile 642e7609-nodemo nodemo@
+34 silly lockFile 642e7609-nodemo nodemo@
+35 error 404 404 Not Found: nodemo
+35 error 404
+35 error 404 'nodemo' is not in the npm registry.
+35 error 404 You should bug the author to publish it
+35 error 404 It was specified as a dependency of 'homelight'
+35 error 404
+35 error 404 Note that you can also install from a
+35 error 404 tarball, folder, or http url, or git url.
+36 error System Linux 3.8.0-44-generic
+37 error command "/usr/bin/node" "/usr/bin/npm" "install" "nodemo"
+38 error cwd /home/logan/homelight
+39 error node -v v0.10.35
+40 error npm -v 1.4.28
+41 error code E404
+42 verbose exit [ 1, true ]

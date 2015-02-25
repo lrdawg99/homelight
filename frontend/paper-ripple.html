@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)http://www.polymer-project.org/components/paper-ripple/demo.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><style>template {display: none !important;} /* injected by platform.js */</style><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; } 
+</style><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
+  <title>paper-ripple</title>
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  
+  <script src="./paper-ripple_files/platform.js"></script><style type="text/css"></style>
+  
+  <link rel="import" href="http://www.polymer-project.org/components/core-icons/core-icons.html">
+  <link rel="import" href="http://www.polymer-project.org/components/paper-ripple/paper-ripple.html">
+  <link rel="import" href="http://www.polymer-project.org/components/font-roboto/roboto.html">
+  <link rel="import" href="http://www.polymer-project.org/components/core-icon/core-icon.html">
+  
+  <style shim-shadowdom="">
+  
+    body {
+      background-color: #f9f9f9;
+      font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+      -webkit-touch-callout: none;
+    }
+    
+    section {
+      padding: 30px 25px;
+    }
+    
+    section > * {
+      margin: 10px
+    }
+    
+    /* Button */
+    .button {
+      display: inline-block;
+      position: relative;
+      width: 120px;
+      height: 32px;
+      line-height: 32px;
+      border-radius: 2px;
+      font-size: 0.9em;
+      background-color: #fff;
+      color: #646464;
+    }
+    
+    .button > paper-ripple {
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    
+    .button.narrow {
+      width: 60px;
+    }
+    
+    .button.grey {
+      background-color: #eee;
+    }
+    
+    .button.blue {
+      background-color: #4285f4;
+      color: #fff;
+    }
+    
+    .button.green {
+      background-color: #0f9d58;
+      color: #fff;
+    }
+    
+    .button.raised {
+      transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition-delay: 0.2s;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    }
+    
+    .button.raised:active {
+      box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+      transition-delay: 0s;
+    }
+    
+    /* Icon Button */
+    .icon-button {
+      position: relative;
+      display: inline-block;
+      width: 56px;
+      height: 56px;
+    }
+    
+    .icon-button > core-icon {
+      margin: 16px;
+      transition: -webkit-transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .icon-button:hover > core-icon {
+      -webkit-transform: scale(1.2);
+      transform: scale(1.2);
+    }
+    
+    .icon-button > paper-ripple {
+      overflow: hidden;
+      color: #646464;
+    }
+    
+    .icon-button.red > core-icon::shadow path {
+      fill: #db4437;
+    }
+    
+    .icon-button.red > paper-ripple {
+      color: #db4437;
+    }
+    
+    .icon-button.blue > core-icon::shadow path {
+      fill: #4285f4;
+    }
+    
+    .icon-button.blue > paper-ripple {
+      color: #4285f4;
+    }
+    
+    /* FAB */
+    .fab {
+      position: relative;
+      display: inline-block;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      color: #fff;
+      overflow: hidden;
+      transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      transition-delay: 0.2s;
+      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    }
+    
+    .fab.red {
+      background-color: #d23f31;
+    }
+    
+    .fab.blue {
+      background-color: #4285f4;
+    }
+    
+    .fab.green {
+      background-color: #0f9d58;
+    }
+    
+    .fab:active {
+      box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+      transition-delay: 0s;
+    }
+    
+    .fab > core-icon {
+      margin: 16px;
+    }
+    
+    .fab > core-icon::shadow path {
+      fill: #fff;
+    }
+    
+    /* Menu */
+    .menu {
+      display: inline-block;
+      width: 180px;
+      background-color: #fff;
+      box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+    }
+    
+    .item {
+      position: relative;
+      height: 48px;
+      line-height: 48px;
+      color: #646464;
+      font-size: 0.9em;
+    }
+    
+    .menu.blue > .item {
+      color: #4285f4;
+    }
+    
+    /* Card, Dialog */
+    .card, .dialog {
+      position: relative;
+      display: inline-block;
+      width: 300px;
+      height: 240px;
+      vertical-align: top;
+      background-color: #fff;
+      box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
+    }
+    
+    .dialog {
+      box-sizing: border-box;
+      padding: 16px;
+    }
+    
+    .dialog > .content {
+      height: 170px;
+      font-size: 0.9em;
+    }
+    
+    .dialog > .content > .title {
+      font-size: 1.3em;
+    }
+    
+    .dialog > .button {
+      width: 90px;
+      float: right;
+    }
+    
+    .card.image {
+      background: url(http://lorempixel.com/300/240/nature/);
+      color: #fff;
+    }
+    
+    /* Misc */
+    .center {
+      text-align: center;
+    }
+    
+    .label {
+      padding: 0 16px;
+    }
+    
+    .label-blue {
+      color: #4285f4; 
+    }
+    
+    .label-red {
+      color: #d23f31; 
+    }
+    
+  </style>
+  
+<style>[touch-action="none"]{ -ms-touch-action: none; touch-action: none;}
+html /deep/ [touch-action="none"]{ -ms-touch-action: none; touch-action: none;}
+[touch-action="auto"]{ -ms-touch-action: auto; touch-action: auto;}
+html /deep/ [touch-action="auto"]{ -ms-touch-action: auto; touch-action: auto;}
+[touch-action="pan-x"]{ -ms-touch-action: pan-x; touch-action: pan-x;}
+html /deep/ [touch-action="pan-x"]{ -ms-touch-action: pan-x; touch-action: pan-x;}
+[touch-action="pan-y"]{ -ms-touch-action: pan-y; touch-action: pan-y;}
+html /deep/ [touch-action="pan-y"]{ -ms-touch-action: pan-y; touch-action: pan-y;}
+[touch-action="pan-x pan-y"],[touch-action="pan-y pan-x"]{ -ms-touch-action: pan-x pan-y; touch-action: pan-x pan-y;}
+html /deep/ [touch-action="pan-x pan-y"],html /deep/ [touch-action="pan-y pan-x"]{ -ms-touch-action: pan-x pan-y; touch-action: pan-x pan-y;}
+[touch-action="manipulation"]{ -ms-touch-action: manipulation; touch-action: manipulation;}
+html /deep/ [touch-action="manipulation"]{ -ms-touch-action: manipulation; touch-action: manipulation;}
+</style></head>
+<body>
+
+  <section>
+  
+    <div class="button raised">
+      <div class="center" fit="">SUBMIT</div>
+      <paper-ripple fit=""></paper-ripple>
+    </div>
+    
+    <div class="button raised grey">
+      <div class="center" fit="">CANCEL</div>
+      <paper-ripple fit=""></paper-ripple>
+    </div>
+    
+    <div class="button raised blue">
+      <div class="center" fit="">COMPOSE</div>
+      <paper-ripple fit=""></paper-ripple>
+    </div>
+    
+    <div class="button raised green">
+      <div class="center" fit="">OK</div>
+      <paper-ripple fit=""></paper-ripple>
+    </div>
+    
+  </section>
+  
+  <section>
+    
+    <div class="button raised grey narrow">
+      <div class="center" fit="">+1</div>
+      <paper-ripple fit=""></paper-ripple>
+    </div>
+    
+    <div class="button raised grey narrow label-blue">
+      <div class="center" fit="">+1</div>
+      <paper-ripple fit=""></paper-ripple>
+    </div>
+    
+    <div class="button raised grey narrow label-red">
+      <div class="center" fit="">+1</div>
+      <paper-ripple fit=""></paper-ripple>
+    </div>
+    
+  </section>
+  
+  <section>
+    
+    <div class="icon-button">
+      <core-icon icon="menu" aria-label="menu" role="img"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="pointer-events: none; display: block;"><g><path d="M3,18h18v-2H3V18z M3,13h18v-2H3V13z M3,6v2h18V6H3z"></path></g></svg></core-icon>
+      <paper-ripple class="circle recenteringTouch" fit=""></paper-ripple>
+    </div>
+    
+    <div class="icon-button">
+      <core-icon icon="more-vert" aria-label="more-vert" role="img"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="pointer-events: none; display: block;"><g><path d="M12,8c1.1,0,2-0.9,2-2s-0.9-2-2-2c-1.1,0-2,0.9-2,2S10.9,8,12,8z M12,10c-1.1,0-2,0.9-2,2s0.9,2,2,2c1.1,0,2-0.9,2-2S13.1,10,12,10z M12,16c-1.1,0-2,0.9-2,2s0.9,2,2,2c1.1,0,2-0.9,2-2S13.1,16,12,16z"></path></g></svg></core-icon>
+      <paper-ripple class="circle recenteringTouch" fit=""></paper-ripple>
+    </div>
+    
+    <div class="icon-button red">
+      <core-icon icon="delete" aria-label="delete" role="img"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="pointer-events: none; display: block;"><g><path d="M6,19c0,1.1,0.9,2,2,2h8c1.1,0,2-0.9,2-2V7H6V19z M19,4h-3.5l-1-1h-5l-1,1H5v2h14V4z"></path></g></svg></core-icon>
+      <paper-ripple class="circle recenteringTouch" fit=""></paper-ripple>
+    </div>
+    
+    <div class="icon-button blue">
+      <core-icon icon="account-box" aria-label="account-box" role="img"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="pointer-events: none; display: block;"><g><path d="M3,5l0,14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5c0-1.1-0.9-2-2-2H5C3.9,3,3,3.9,3,5z M15,9c0,1.7-1.3,3-3,3c-1.7,0-3-1.3-3-3c0-1.7,1.3-3,3-3C13.7,6,15,7.3,15,9z M6,17c0-2,4-3.1,6-3.1s6,1.1,6,3.1v1H6V17z"></path></g></svg></core-icon>
+      <paper-ripple class="circle recenteringTouch" fit=""></paper-ripple>
+    </div>
+    
+  </section>
+  
+  <section>
+  
+    <div class="fab red">
+      <core-icon icon="add" aria-label="add" role="img"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="pointer-events: none; display: block;"><g><path d="M19,13h-6v6h-2v-6H5v-2h6V5h2v6h6V13z"></path></g></svg></core-icon>
+      <paper-ripple class="circle recenteringTouch" fit=""></paper-ripple>
+    </div>
+    
+    <div class="fab blue">
+      <core-icon icon="mail" aria-label="mail" role="img"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="pointer-events: none; display: block;"><g><path d="M20,4H4C2.9,4,2,4.9,2,6l0,12c0,1.1,0.9,2,2,2h16c1.1,0,2-0.9,2-2V6C22,4.9,21.1,4,20,4z M20,8l-8,5L4,8V6l8,5l8-5V8z"></path></g></svg></core-icon>
+      <paper-ripple class="circle recenteringTouch" fit=""></paper-ripple>
+    </div>
+    
+    <div class="fab green">
+      <core-icon icon="create" aria-label="create" role="img"><svg viewBox="0 0 24 24" height="100%" width="100%" preserveAspectRatio="xMidYMid meet" fit="" style="pointer-events: none; display: block;"><g><path d="M3,17.2V21h3.8L17.8,9.9l-3.8-3.8L3,17.2z M20.7,7c0.4-0.4,0.4-1,0-1.4l-2.3-2.3c-0.4-0.4-1-0.4-1.4,0l-1.8,1.8l3.8,3.8L20.7,7z"></path></g></svg></core-icon>
+      <paper-ripple class="circle recenteringTouch" fit=""></paper-ripple>
+    </div>
+  
+  </section>
+  
+  <section>
+  
+    <div class="menu">
+    
+      <div class="item">
+        <div class="label" fit="">Mark as unread</div>
+        <paper-ripple fit=""></paper-ripple>
+      </div>
+      <div class="item">
+        <div class="label" fit="">Mark as important</div>
+        <paper-ripple fit=""></paper-ripple>
+      </div>
+      <div class="item">
+        <div class="label" fit="">Add to Tasks</div>
+        <paper-ripple fit=""></paper-ripple>
+      </div>
+      <div class="item">
+        <div class="label" fit="">Create event</div>
+        <paper-ripple fit=""></paper-ripple>
+      </div>
+      
+    </div>
+    
+    <div class="menu blue">
+    
+      <div class="item">
+        <div class="label" fit="">Import</div>
+        <paper-ripple fit=""></paper-ripple>
+      </div>
+      <div class="item">
+        <div class="label" fit="">Export</div>
+        <paper-ripple fit=""></paper-ripple>
+      </div>
+      <div class="item">
+        <div class="label" fit="">Print</div>
+        <paper-ripple fit=""></paper-ripple>
+      </div>
+      <div class="item">
+        <div class="label" fit="">Restore contacts</div>
+        <paper-ripple fit=""></paper-ripple>
+      </div>
+      
+    </div>
+  
+  </section>
+  
+  <section>
+  
+    <div class="dialog">
+    
+      <div class="content">
+        <div class="title">Permission</div><br>
+        <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</div>
+      </div>
+    
+      <div class="button label-blue">
+        <div class="center" fit="">ACCEPT</div>
+        <paper-ripple fit=""></paper-ripple>
+      </div>
+      
+      <div class="button">
+        <div class="center" fit="">DECLINE</div>
+        <paper-ripple fit=""></paper-ripple>
+      </div>
+    
+    </div>
+  
+    <div class="card">
+    
+      <paper-ripple class="recenteringTouch" fit=""></paper-ripple>
+    
+    </div>
+    
+    <div class="card image">
+    
+      <paper-ripple class="recenteringTouch" fit=""></paper-ripple>
+    
+    </div>
+  
+  </section>
+  
+
+
+</body></html>

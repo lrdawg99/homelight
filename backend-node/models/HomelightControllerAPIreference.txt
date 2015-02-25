@@ -1,0 +1,52 @@
+Homelight Controller API reference
+Logan Rooper 
+2/24/2015
+logan.rooper@gmail.com
+
+Route:			/
+Type:			GET
+Purpose: 		initialization confirmation
+Parameters:		none
+Returns: 		none
+
+Route:			/api/systemstate
+Type:			GET
+Purpose: 		gets current system state
+Parameters:		none
+Returns: 		{"state":"<current_state>"}
+
+Route:			/api/systemstate/
+Type:			POST
+Purpose: 		change the current system state
+Parameters:		state : off | on | demo | waves | set (hue : <hue integer>)
+Returns: 		{"message":"<system message>","state":"<state>","status":"<OK | error>"}
+
+Route:			/
+Type:			GET
+Purpose: 		i
+Parameters:		n
+Returns: 		n
+
+Route:			/
+Type:			GET
+Purpose: 		i
+Parameters:		n
+Returns: 		n
+
+Route:			/
+Type:			GET
+Purpose: 		i
+Parameters:		n
+Returns: 		n
+
+Route:			/
+Type:			GET
+Purpose: 		i
+Parameters:		n
+Returns: 		n
+
+Route:			/
+Type:			GET
+Purpose: 		i
+Parameters:		n
+Returns: 		n

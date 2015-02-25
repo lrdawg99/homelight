@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta name="mobile-web-app-capable" content="yes">
+
+    <script src="./paper-ripple_files/platform.js"></script><style type="text/css"></style>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+  
+	<link rel="import" href="http://www.polymer-project.org/components/core-icons/core-icons.html">
+	<link rel="import" href="http://www.polymer-project.org/components/paper-ripple/paper-ripple.html">
+	<link rel="import" href="http://www.polymer-project.org/components/font-roboto/roboto.html">
+	<link rel="import" href="http://www.polymer-project.org/components/core-icon/core-icon.html">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+    <style>
+		html { 
+		  padding: 0px;
+		  margin: 0px;
+		  width: 100%;
+		  height: 100%;
+		}
+		body {
+			background: url(./wallpapers/dawn.png) no-repeat bottom left; 
+			-webkit-background-size: cover;
+		  	-moz-background-size: cover;
+		  	-o-background-size: cover;
+		  	background-size: cover;
+		  
+		  	width: 100%;
+		  	height: 100%;
+		  
+
+			padding: 0px;
+			margin: 0px;
+	        font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+	        margin: 0;
+	        -webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+			-webkit-tap-highlight-color: rgba(0,0,0,0);
+			-webkit-touch-callout: none;
+	    }
+
+	    core-toolbar {
+	      color: #f1f1f1;
+	      fill: #f1f1f1;
+	    }
+
+		.mainPanel {
+			background: #27ae60;
+			width: 100%;
+			height: 270px;
+			position: absolute;
+			top: 0;
+			z-index: 2;
+
+		}
+		section {
+		  padding: 20px 25px;
+		  z-index: 2;
+		}
+
+		section > * {
+		  margin: 10px
+		}
+
+		/* Button */
+		.button {
+		  display: inline-block;
+		  position: relative;
+		  width: 120px;
+		  height: 32px;
+		  line-height: 32px;
+		  border-radius: 2px;
+		  font-size: 0.9em;
+		  background-color: #fff;
+		  color: #646464;
+		}
+
+		.button > paper-ripple {
+		  border-radius: 2px;
+		  overflow: hidden;
+		}
+
+		.button.narrow {
+		  width: 60px;
+		}
+
+		.button.grey {
+		  background-color: #eee;
+		}
+
+		.button.blue {
+		  background-color: #4285f4;
+		  color: #fff;
+		}
+
+		.button.green {
+		  background-color: #0f9d58;
+		  color: #fff;
+		}
+
+		.button.raised {
+		  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+		  transition-delay: 0.2s;
+		  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+		}
+
+		.button.raised:active {
+		  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+		  transition-delay: 0s;
+		}
+
+		/* Icon Button */
+		.icon-button {
+		  position: relative;
+		  display: inline-block;
+		  width: 56px;
+		  height: 56px;
+		}
+
+		.icon-button > core-icon {
+		  margin: 16px;
+		  transition: -webkit-transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+		  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+
+		.icon-button:hover > core-icon {
+		  -webkit-transform: scale(1.2);
+		  transform: scale(1.2);
+		}
+
+		.icon-button > paper-ripple {
+		  overflow: hidden;
+		  color: #ff000;
+		}
+
+		.icon-button.red > core-icon::shadow path {
+		  fill: #db4437;
+		}
+
+		.icon-button.red > paper-ripple {
+		  color: #db4437;
+		}
+
+		.icon-button.blue > core-icon::shadow path {
+		  fill: #4285f4;
+		}
+
+		.icon-button.blue > paper-ripple {
+		  color: #4285f4;
+		}
+
+		/* FAB */
+		.fab {
+		  position: relative;
+		  display: inline-block;
+		  width: 56px;
+		  height: 56px;
+		  border-radius: 50%;
+		  color: #aaa;
+		  overflow: hidden;
+		  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+		  transition-delay: 0.2s;
+		  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+		}
+
+		.fab.red {
+		  background-color: #d23f31;
+		}
+
+		.fab.blue {
+		  background-color: #4285f4;
+		}
+
+		.fab.green {
+		  background-color: #0f9d58;
+		}
+
+		.fab:active {
+		  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+		  transition-delay: 0s;
+		}
+
+		.fab > core-icon {
+		  margin: 16px;
+		}
+
+		.fab > core-icon::shadow path {
+		  fill: #aaa;
+		}
+
+		/* Menu */
+		.menu {
+		  display: inline-block;
+		  width: 180px;
+		  background-color: #fff;
+		  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+		}
+
+		.item {
+		  position: relative;
+		  height: 48px;
+		  line-height: 48px;
+		  color: #646464;
+		  font-size: 0.9em;
+		}
+
+		.menu.blue > .item {
+		  color: #4285f4;
+		}
+
+		/* Card, Dialog */
+		.card, .dialog {
+		  position: relative;
+		  display: inline-block;
+		  width: 200px;
+		  height: 200px;
+		  border-radius: 50%;
+		  vertical-align: top;
+		  background-color: #fff;
+		  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24);
+		}
+
+		.dialog {
+		  box-sizing: border-box;
+		  padding: 16px;
+		}
+
+		.dialog > .content {
+		  height: 170px;
+		  font-size: 0.9em;
+		}
+
+		.dialog > .content > .title {
+		  font-size: 1.3em;
+		}
+
+		.dialog > .button {
+		  width: 90px;
+		  float: right;
+		}
+
+		.card.image {
+		  background: white;
+		  color: #fff;
+		  border-radius: 50%;
+		  width: 200px;
+		  height: 200px;
+		}
+
+		/* Misc */
+		.center {
+		  text-align: center;
+		}
+
+		.label {
+		  padding: 0 16px;
+		}
+
+		.label-blue {
+		  color: #4285f4; 
+		}
+
+		.label-red {
+		  color: #d23f31; 
+		}
+		.recenteringTouch {
+			border-radius: 50%;
+		}
+		.buttonIconOn {
+			height: 165px;
+			padding-top: 35px;
+		}
+		.buttonIconOff {
+			height: 165px;
+			padding-top: 35px;
+		}
+		.buttonIconSun{
+			height: 175px;
+			padding-top: 25px;
+
+		}
+
+		.clock {
+			position: absolute;
+			bottom: 60px;
+			right: 100px;
+			font-size: 100px;
+			color: white;
+		}
+
+		.lastRes{
+			position: absolute;
+			bottom: 0px;
+			right: 0px;
+			color: white;
+		}
+
+		.center {
+			width: 200px;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.error {
+			z-index: 3;
+			display: none;
+			position: absolute;
+			top: 350px;
+			width: 40%;
+			left: 30%;
+			padding:1.5rem;
+			  box-shadow:0 3px 6px #aaa;
+			  background:white;
+			  margin:0 1rem 1rem;
+			  border-radius:3px;
+			  user-select:none;
+			  animation:fly-in-from-left .5s 1s ease both;
+			  transform-origin:top left;
+			  text-align: center;
+		}
+
+		.button {
+			border: none;
+			color: #fff;
+			background: #27ae60;
+		}
+		.pulldown-advanced {
+			z-index: 1;
+			position: absolute;
+			margin: 0;
+			top: 70px;
+			left: 0px;
+			width: 100%;
+			height: 40px;
+			box-shadow:0 3px 6px #aaa;
+			background:white;
+			border-radius:3px;
+			text-align: center;
+		}
+		.inline-pulldown {
+			font-size: 20px;
+		}
+
+		.inline-input {
+			width: 50px;
+		}
+
+		.gear {
+			position: absolute;
+			bottom: 10px;
+			left: 10px;
+			width: 50px;
+			height: 50px;
+		}
+		.buttonIconGear {
+			width: 50px;
+		}
+    </style>
+    <style>[touch-action="none"]{ -ms-touch-action: none; touch-action: none;}
+html /deep/ [touch-action="none"]{ -ms-touch-action: none; touch-action: none;}
+[touch-action="auto"]{ -ms-touch-action: auto; touch-action: auto;}
+html /deep/ [touch-action="auto"]{ -ms-touch-action: auto; touch-action: auto;}
+[touch-action="pan-x"]{ -ms-touch-action: pan-x; touch-action: pan-x;}
+html /deep/ [touch-action="pan-x"]{ -ms-touch-action: pan-x; touch-action: pan-x;}
+[touch-action="pan-y"]{ -ms-touch-action: pan-y; touch-action: pan-y;}
+html /deep/ [touch-action="pan-y"]{ -ms-touch-action: pan-y; touch-action: pan-y;}
+[touch-action="pan-x pan-y"],[touch-action="pan-y pan-x"]{ -ms-touch-action: pan-x pan-y; touch-action: pan-x pan-y;}
+html /deep/ [touch-action="pan-x pan-y"],html /deep/ [touch-action="pan-y pan-x"]{ -ms-touch-action: pan-x pan-y; touch-action: pan-x pan-y;}
+[touch-action="manipulation"]{ -ms-touch-action: manipulation; touch-action: manipulation;}
+html /deep/ [touch-action="manipulation"]{ -ms-touch-action: manipulation; touch-action: manipulation;}
+</style>
+
+  </head>
+  <body onload="updateClock(); setInterval('updateClock()', 500);">
+    <div class='pulldown-advanced'>
+    	<button class='inline-button' onClick="setDemoMode()">Demo Mode</button> &nbsp;&nbsp;&nbsp;
+		<span class='inline-pulldown'>red: </span><input class='inline-input red' type="text"></input>
+		<span class='inline-pulldown'>green: </span><input class='inline-input green' type="text"></input>
+		<span class='inline-pulldown'>blue: </span><input class='inline-input blue' type="text"></input>
+		<button class='inline-button' onClick="setColors();">Set</button>
+		<button class='inline-button' onClick="$('.pulldown-advanced').animate({top: 70}, 300)">Close</button>
+
+		
+	</div>
+    <div class="mainPanel">
+	  <section>
+	  	<div class="container" style="width: 100%">
+	  		<div class="col-md-4">
+				<div class="card center">
+			      <paper-ripple class="recenteringTouch lights-on" fit=""></paper-ripple>
+			      <span class="buttonContent">
+			      	<img class="buttonIconOn" src="./graphics/bulb2.png"/>
+			      </span>
+			    </div>
+			 </div>
+			 <div class="col-md-4">
+			    <div class="card center">
+			      <paper-ripple class="recenteringTouch  lights-off" fit=""></paper-ripple>
+			      <span class="buttonContent">
+			      	<img class="buttonIconOff" src="./graphics/bulb1.png"/>
+			      </span>
+			    </div>
+			 </div>
+			 <div class="col-md-4">
+			    <div class="card center">
+			      <paper-ripple class="recenteringTouch  sunny-day" fit=""></paper-ripple>
+			      <span class="buttonContent">
+			      	<img class="buttonIconSun" src="./graphics/sunIcon.png"/>
+			      </span>
+			    </div>
+			  </div>
+
+		</div>
+
+		<div class='error'>
+			<h2 class='error-inner'>An error occured.</h2>
+			<button class='button' onClick="$('.error').hide();">Close</button>
+		</div>
+
+		
+
+		<span class="lastRes"><i>Last resident seen about 1 hour ago</i></span>
+	  </section>
+    </div>
+
+	<div class="clock">
+    	<span id="clock">
+    	</span>
+    </div>
+
+    <div class="card gear" onClick="$('.pulldown-advanced').animate({top: 270}, 500)">
+	      <paper-ripple class="recenteringTouch settings" fit=""></paper-ripple>
+	      <span class="buttonContent">
+	      	<img class="buttonIconGear" src="./graphics/gear.png"/>
+	      </span>
+	    </div>
+	 </div>
+
+
+  </body>
+  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+  <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+  <script type="text/javascript">
+  			var time_of_day = 'none'; //k
+            // This function gets the current time and injects it into the DOM
+            function updateClock() {
+                // Gets the current time
+                var now = new Date();
+ 
+                // Get the hours, minutes and seconds from the current time
+                var hours = now.getHours();
+                var minutes = now.getMinutes();
+ 
+                // Format hours, minutes and seconds
+                if (hours < 10) {
+                    hours = "0" + hours;
+                }
+                if (minutes < 10) {
+                    minutes = "0" + minutes;
+                }
+                
+ 
+                // Gets the element we want to inject the clock into
+                var elem = document.getElementById('clock');
+ 
+                // Sets the elements inner HTML value to our clock data
+                elem.innerHTML = hours + ':' + minutes;
+
+
+                //test if the connection is live!
+                $.ajax({
+				  url: 'http://152.3.3.209:3000/api/',
+				  type: 'GET',
+				  success: function(data) {
+				  	hideError();
+				  }
+				}).error(function(request, status, error) {
+					showError('We can\'t connect right now! Try again soon.');
+				});
+
+
+				//check if it's time to change the background
+				if ((hours >= 20 || hours < 6) && time_of_day != 'night') {
+					//night
+					time_of_day = 'night';
+					$('body').css('background', 'url(./wallpapers/'+time_of_day+'.png) no-repeat bottom left');
+					
+				} else if ((hours >= 6 && hours < 9) && time_of_day != 'dawn') {
+					//dawn
+					time_of_day = 'dawn';
+					$('body').css('background', 'url(./wallpapers/'+time_of_day+'.png) no-repeat bottom left');
+				} else if ((hours >= 9 && hours < 19) && time_of_day != 'day') {
+					//day
+					time_of_day = 'day';
+					$('body').css('background', 'url(./wallpapers/'+time_of_day+'.png) no-repeat bottom left');
+				} else if ((hours >= 19 && hours < 20) && time_of_day != 'dusk') {
+					//dusk
+					time_of_day = 'dusk';
+					$('body').css('background', 'url(./wallpapers/'+time_of_day+'.png) no-repeat bottom left');
+				}
+			}
+
+            //display the error box
+            function showError(message) {
+            	$('.error').show()
+            	$('.error-inner').html(message);
+            }
+
+            function hideError() {
+            	$('.error').hide()
+            }
+
+            //from stackoverflow:
+            function rgb2hsv () {
+			    var rr, gg, bb,
+			        r = arguments[0] / 255,
+			        g = arguments[1] / 255,
+			        b = arguments[2] / 255,
+			        h, s,
+			        v = Math.max(r, g, b),
+			        diff = v - Math.min(r, g, b),
+			        diffc = function(c){
+			            return (v - c) / 6 / diff + 1 / 2;
+			        };
+
+			    if (diff == 0) {
+			        h = s = 0;
+			    } else {
+			        s = diff / v;
+			        rr = diffc(r);
+			        gg = diffc(g);
+			        bb = diffc(b);
+
+			        if (r === v) {
+			            h = bb - gg;
+			        }else if (g === v) {
+			            h = (1 / 3) + rr - bb;
+			        }else if (b === v) {
+			            h = (2 / 3) + gg - rr;
+			        }
+			        if (h < 0) {
+			            h += 1;
+			        }else if (h > 1) {
+			            h -= 1;
+			        }
+			    }
+			    return Math.round(h * 360);
+			}
+
+            //set custom colors
+            function setColors() {
+            	var red = $('.inline-input.red').val();
+            	var green = $('.inline-input.green').val();
+            	var blue = $('.inline-input.blue').val();
+            	var hue = rgb2hsv(red*1, green*1, blue*1);
+
+
+            	//map 0-360 to 0-65535
+            	var hue = Math.ceil((hue/360)*65535);
+
+            	console.log("setting hue to: " + hue);
+
+
+            	$.ajax({
+				  url: 'http://152.3.3.209:3000/api/systemstate/',
+				  data: 'state=set&hue='+hue,
+				  type: 'POST',
+				  success: function(data) {
+				  	//alert(data);
+				  }
+				}).error(function(request, status, error) {
+					alert(JSON.stringify(request));
+				});
+            }
+
+            $('.lights-on').click(function() {
+            	$.ajax({
+				  url: 'http://152.3.3.209:3000/api/systemstate/',
+				  data: 'state=on',
+				  type: 'POST',
+				  success: function(data) {
+				  	//alert(data);
+				  }
+				}).error(function(request, status, error) {
+					alert(JSON.stringify(request));
+				});
+            });
+
+            $('.lights-off').click(function() {
+            	$.ajax({
+				  url: 'http://152.3.3.209:3000/api/systemstate/',
+				  data: 'state=off',
+				  type: 'POST',
+				  success: function(data) {
+				  	//alert(data);
+				  }
+				}).error(function(request, status, error) {
+					alert(JSON.stringify(request));
+				});
+            });
+
+            $('.sunny-day').click(function() {
+            	$.ajax({
+				  url: 'http://152.3.3.209:3000/api/systemstate/',
+				  data: 'state=timebased',
+				  type: 'POST',
+				  success: function(data) {
+				  	//alert(data);
+				  }
+				}).error(function(request, status, error) {
+					alert(JSON.stringify(request));
+				});
+            });
+
+            function setDemoMode() {
+            	$.ajax({
+				  url: 'http://152.3.3.209:3000/api/systemstate/',
+				  data: 'state=demo',
+				  type: 'POST',
+				  success: function(data) {
+				  	//alert(data);
+				  }
+				}).error(function(request, status, error) {
+					alert(JSON.stringify(request));
+				});
+            }
+        </script>
+
+</html>
